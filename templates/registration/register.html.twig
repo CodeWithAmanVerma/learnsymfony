@@ -77,11 +77,14 @@
                         </div>
                     </div>
                     <div class="col-md-12">
-                        <div class="form-check">
-                            {{ form_widget(registrationForm.agreeTerms, {id: 'remember_me'}) }}
-                            <label class="form-check-label" for="remember_me">
-                                I agree to the <a href="{{path('page_terms')}}">terms and conditions</a>
-                            </label>
+                        <div class="form-group">
+                            <div class="form-check">
+                                {{ form_widget(registrationForm.agreeTerms, {id: 'remember_me'}) }}
+                                <label class="form-check-label" for="remember_me">
+                                    I agree to the <a href="{{path('page_terms')}}">terms and conditions</a>
+                                </label>
+                                {{form_errors(registrationForm.agreeTerms)}}
+                            </div>
                         </div>
                     </div>
                     <div class="col-md-12">

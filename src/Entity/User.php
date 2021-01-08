@@ -13,6 +13,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
  * @ORM\Entity(repositoryClass=UserRepository::class)
  * @ORM\Table(name="`user`")
  * @UniqueEntity(fields={"email"}, message="There is already an account with this email")
+ * @ORM\HasLifecycleCallbacks()
  */
 class User implements UserInterface
 {
@@ -292,5 +293,33 @@ class User implements UserInterface
         $this->status = $status;
 
         return $this;
+    }
+
+    /**
+     * @ORM\PrePersist
+     */
+    public function setCreatedValue () {
+        $this->created = new \DateTime();
+    }
+
+    /**
+     * @ORM\PrePersist
+     */
+    public function setUpdatedValue () {
+        $this->updated = new \DateTime();
+    }
+
+    /**
+     * @ORM\PrePersist
+     */
+    public function setStatusValue () {
+        $this->status = 'active';
+    }
+
+    /**
+     * @ORM\PrePersist
+     */
+    public function setRoleValue () {
+        $this->roles = ["ROLE_USER"];
     }
 }
