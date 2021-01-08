@@ -28,7 +28,7 @@ class Post
     private $post_content;
 
     /**
-     * @ORM\Column(type="string", length=20)
+     * @ORM\Column(type="string", columnDefinition="ENUM('draft', 'pending', 'active', 'inactive', 'trashed')")
      */
     private $post_status;
 

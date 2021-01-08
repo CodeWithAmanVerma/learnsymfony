@@ -38,6 +38,11 @@
 					<a class="navbar-brand" href="{{ path('home') }}">Project Name</a>
 				</div>
 				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">	
+					<ul class="nav navbar-nav">
+						{% if is_granted('IS_AUTHENTICATED_FULLY') %}
+							<li><a href="{{ path('create_post') }}"><i class="fa fa-plus-circle"></i> Add Post</a></li>
+						{% endif %}
+					</ul>
 					<ul class="nav navbar-nav navbar-right">
 						{% if is_granted('IS_AUTHENTICATED_FULLY') %}
 							<li><a href="{{ path('app_logout') }}">Logout</a></li>
@@ -51,11 +56,12 @@
 		</nav>
 		<div class="container">
             {% block body %}{% endblock %}
-            {% block javascripts %}{% endblock %}
 		</div>
 		<footer>
 			<div class="container text-center p-20x">&copy; Copyright 2020, All Rights Reserved</div>
 		</footer>
 	</div>
+	{% block javascripts %}{% endblock %}
+	<script src="https://use.fontawesome.com/63d6908806.js"></script>
 </body>
 </html>

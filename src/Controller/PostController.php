@@ -13,7 +13,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class PostController extends AbstractController
 {
     /**
-     * @Route("/post", name="post")
+     * @Route("/dashboard/post", name="post")
      */
     public function index(PostRepository $postRepository): Response
     {
@@ -23,7 +23,7 @@ class PostController extends AbstractController
     }
 
     /**
-     * @Route("/post/create", name="create_post")
+     * @Route("/dashboard/post/create", name="create_post")
      */
 
     public function create(Request $request){
@@ -47,5 +47,21 @@ class PostController extends AbstractController
         return $this->render('post/create.html.twig', [
             'postForm' => $postForm->createView()
         ]);
+    }
+
+    /**
+     * @Route("/dashboard/post/edit/{id}", name="edit_post")
+     */
+
+    public function edit(Request $request){
+    
+    }
+
+    /**
+     * @Route("/dashboard/post/delete/{id}", name="delete_post")
+     */
+
+    public function delete(Request $request){
+    
     }
 }

@@ -24,6 +24,16 @@ class User implements UserInterface
     private $id;
 
     /**
+     * @ORM\Column(type="string", length=100)
+     */
+    private $first_name;
+
+    /**
+     * @ORM\Column(type="string", length=100)
+     */
+    private $last_name;
+
+    /**
      * @ORM\Column(type="string", length=180, unique=true)
      */
     private $email;
@@ -40,8 +50,39 @@ class User implements UserInterface
     private $password;
 
     /**
+     * @ORM\Column(type="string", length=20)
+     */
+    private $mobile;
+
+    /**
+     * @ORM\Column(type="date", nullable=true)
+     */
+    private $dob;
+
+    /**
+     * @ORM\Column(type="string", length=10)
+     */
+    private $gender;
+
+    /**
+     * @ORM\Column(type="string", columnDefinition="ENUM('pending', 'active', 'inactive', 'trashed')")
+     */
+    private $status;
+
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    private $created;
+
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    private $updated;
+
+    /**
      * @ORM\OneToMany(targetEntity=Post::class, mappedBy="post_author")
      */
+    
     private $posts;
 
     public function __construct()
@@ -153,6 +194,102 @@ class User implements UserInterface
                 $post->setPostAuthor(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getFirstName(): ?string
+    {
+        return $this->first_name;
+    }
+
+    public function setFirstName(string $first_name): self
+    {
+        $this->first_name = $first_name;
+
+        return $this;
+    }
+
+    public function getLastName(): ?string
+    {
+        return $this->last_name;
+    }
+
+    public function setLastName(string $last_name): self
+    {
+        $this->last_name = $last_name;
+
+        return $this;
+    }
+
+    public function getMobile(): ?string
+    {
+        return $this->mobile;
+    }
+
+    public function setMobile(string $mobile): self
+    {
+        $this->mobile = $mobile;
+
+        return $this;
+    }
+
+    public function getDob(): ?\DateTimeInterface
+    {
+        return $this->dob;
+    }
+
+    public function setDob(\DateTimeInterface $dob): self
+    {
+        $this->dob = $dob;
+
+        return $this;
+    }
+
+    public function getGender(): ?string
+    {
+        return $this->gender;
+    }
+
+    public function setGender(string $gender): self
+    {
+        $this->gender = $gender;
+
+        return $this;
+    }
+
+    public function getCreated(): ?\DateTimeInterface
+    {
+        return $this->created;
+    }
+
+    public function setCreated(\DateTimeInterface $created): self
+    {
+        $this->created = $created;
+
+        return $this;
+    }
+
+    public function getUpdated(): ?\DateTimeInterface
+    {
+        return $this->updated;
+    }
+
+    public function setUpdated(\DateTimeInterface $updated): self
+    {
+        $this->updated = $updated;
+
+        return $this;
+    }
+
+    public function getStatus(): ?string
+    {
+        return $this->status;
+    }
+
+    public function setStatus(string $status): self
+    {
+        $this->status = $status;
 
         return $this;
     }

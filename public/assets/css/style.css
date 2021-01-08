@@ -178,3 +178,33 @@ body {
 	top: -2px;
 	font-weight: normal;
 }
+.form-group ul {
+    list-style: none;
+    padding: 0;
+}
+
+.form-group ul li:before {
+    content: "ERROR";
+    background: #B0413E;
+    font-size: 10px;
+    padding: 2px 5px;
+    color: #fff;
+    margin-right: 10px
+}
+.edit-link{
+	color: #000000;
+	font-size: 16px;
+	border: 1px solid #eeeeee;
+	width: 30px;
+	display: inline-block;
+	text-align: center;
+}
+
+.delete-link{
+	color: #B0413E;
+	font-size: 16px;
+	border: 1px solid #eeeeee;
+	width: 30px;
+	display: inline-block;
+	text-align: center;
+}
