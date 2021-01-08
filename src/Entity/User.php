@@ -60,7 +60,7 @@ class User implements UserInterface
     private $dob;
 
     /**
-     * @ORM\Column(type="string", length=10)
+     * @ORM\Column(type="string", columnDefinition="ENUM('male', 'female', 'other')")
      */
     private $gender;
 

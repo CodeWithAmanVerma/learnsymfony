@@ -33,4 +33,12 @@ class HomeController extends AbstractController
             'post' => $post
         ]);
     }
+
+    /**
+     * @Route("/terms-and-conditions", name="page_terms")
+     */
+    public function page_terms()
+    {
+        
+    }
 }
