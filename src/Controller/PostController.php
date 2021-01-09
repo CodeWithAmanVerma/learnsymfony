@@ -33,6 +33,7 @@ class PostController extends AbstractController
         $postForm->handleRequest($request);
 
         if($postForm->isSubmitted() && $postForm->isValid()){
+            $post->setPostSlug($this->slugify($post->getPostTitle()));
             $post->setPostStatus('active');
             $post->setPostAuthor($this->getUser());
             $post->setCreated(new \DateTime());
@@ -63,5 +64,32 @@ class PostController extends AbstractController
 
     public function delete(Request $request){
     
+    }
+
+    private function slugify($text)
+    {
+        // replace non letter or digits by -
+        $text = preg_replace('~[^\pL\d]+~u', '-', $text);
+
+        // transliterate
+        $text = iconv('utf-8', 'us-ascii//TRANSLIT', $text);
+
+        // remove unwanted characters
+        $text = preg_replace('~[^-\w]+~', '', $text);
+
+        // trim
+        $text = trim($text, '-');
+
+        // remove duplicate -
+        $text = preg_replace('~-+~', '-', $text);
+
+        // lowercase
+        $text = strtolower($text);
+
+        if (empty($text)) {
+            return 'n-a';
+        }
+
+        return $text;
     }
 }

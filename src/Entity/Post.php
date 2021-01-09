@@ -23,6 +23,11 @@ class Post
     private $post_title;
 
     /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $post_slug;
+
+    /**
      * @ORM\Column(type="text")
      */
     private $post_content;
@@ -120,6 +125,18 @@ class Post
     public function setPostAuthor(?User $post_author): self
     {
         $this->post_author = $post_author;
+
+        return $this;
+    }
+
+    public function getPostSlug(): ?string
+    {
+        return $this->post_slug;
+    }
+
+    public function setPostSlug(string $post_slug): self
+    {
+        $this->post_slug = $post_slug;
 
         return $this;
     }
