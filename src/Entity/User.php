@@ -322,4 +322,8 @@ class User implements UserInterface
     public function setRoleValue () {
         $this->roles = ["ROLE_USER"];
     }
+
+    public function __toString(){
+        return trim(sprintf('%s %s', $this->first_name, $this->last_name));
+    }
 }

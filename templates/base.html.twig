@@ -18,9 +18,11 @@
 		<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 	<![endif]-->
 	<!-- Bootstrap -->
-	<link type="text/css" rel="stylesheet" href="{{asset('css/bootstrap.min.css')}}" />
+	<link type="text/css" rel="stylesheet" href="{{asset('css/bootstrap.min.css', 'default')}}" />
 	<!-- Custom stlylesheet -->
-	<link type="text/css" rel="stylesheet" href="{{asset('css/style.css')}}" />
+	<link type="text/css" rel="stylesheet" href="{{asset('css/style.css', 'default')}}" />
+	<!-- Favicon -->
+	<link rel="icon" href="{{asset('img/favicon.ico', 'default')}}" type="image/x-icon"/>
     {% block stylesheets %}{% endblock %}
 </head>
 
@@ -35,7 +37,7 @@
 						<span class="icon-bar"></span>
 						<span class="icon-bar"></span>
 					</button>
-					<a class="navbar-brand" href="{{ path('home') }}">Project Name</a>
+					<a class="navbar-brand" href="{{ path('home') }}">{{project_name}}</a>
 				</div>
 				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">	
 					<ul class="nav navbar-nav">

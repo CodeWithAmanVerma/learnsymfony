@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\PostRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=PostRepository::class)
@@ -19,6 +20,11 @@ class Post
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank
+     * @Assert\Length(
+     *  min = 10,
+     *  max = 4096
+     * )
      */
     private $post_title;
 
@@ -29,8 +35,18 @@ class Post
 
     /**
      * @ORM\Column(type="text")
+     * @Assert\NotBlank
+     * @Assert\Length(
+     *  min = 10,
+     *  max = 4096
+     * )
      */
     private $post_content;
+
+    /**
+     * @ORM\Column(type="string", columnDefinition="ENUM('post', 'page')")
+     */
+    private $post_type = "post";
 
     /**
      * @ORM\Column(type="string", columnDefinition="ENUM('draft', 'pending', 'active', 'inactive', 'trashed')")
@@ -51,6 +67,11 @@ class Post
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="posts")
      */
     private $post_author;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=PostCategory::class, inversedBy="posts")
+     */
+    private $post_category;
 
     public function getId(): ?int
     {
@@ -137,6 +158,30 @@ class Post
     public function setPostSlug(string $post_slug): self
     {
         $this->post_slug = $post_slug;
+
+        return $this;
+    }
+
+    public function getPostType(): ?string
+    {
+        return $this->post_type;
+    }
+
+    public function setPostType(string $post_type): self
+    {
+        $this->post_type = $post_type;
+
+        return $this;
+    }
+
+    public function getPostCategory(): ?PostCategory
+    {
+        return $this->post_category;
+    }
+
+    public function setPostCategory(?PostCategory $post_category): self
+    {
+        $this->post_category = $post_category;
 
         return $this;
     }

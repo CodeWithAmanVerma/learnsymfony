@@ -69,7 +69,7 @@ class RegistrationFormType extends AbstractType
                     'Select' => null,
                     'Female' => 'female',
                     'Male' => 'male',
-                    'Others' => 'others'
+                    'Others' => 'other'
                 ],
                 'constraints' => [
                     new NotBlank([

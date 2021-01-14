@@ -18,4 +18,6 @@ framework:
 
     # assets path
     assets:
-        base_path: '/assets'
+        packages:
+            default:
+                base_path: '/assets'

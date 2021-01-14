@@ -15,7 +15,7 @@
                                 <h3 class="mb-0">
                                     <a class="text-dark" href="{{path('show_post', {id: post.getId()})}}">{{post.getPostTitle()}}</a>
                                 </h3>
-                                <div class="mb-1 text-muted">{{post.getCreated()|date('j M, Y h:i A')}}</div>
+                                <div class="mb-1 text-muted">{{post.getCreated()|date(date_format)}}</div>
                                 <p class="card-text mb-auto">{{post.getPostContent()|striptags|slice(0, 50)}}</p>
                                 <a href="{{path('show_post', {id: post.getId()})}}">Continue reading</a>
                             </div>
