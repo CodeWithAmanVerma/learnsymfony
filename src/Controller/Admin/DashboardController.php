@@ -1,10 +1,7 @@
 <?php
 
 namespace App\Controller\Admin;
-
-use App\Entity\Post;
-use App\Entity\PostCategory;
-use App\Entity\User;
+use App\Repository\MenuRepository;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractDashboardController;
@@ -13,6 +10,11 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class DashboardController extends AbstractDashboardController
 {
+
+    public function __construct(MenuRepository $menuRepository) {
+        $this->menuRepository = $menuRepository;
+    }
+
     /**
      * @Route("/admin", name="admin")
      */
@@ -29,14 +31,19 @@ class DashboardController extends AbstractDashboardController
 
     public function configureMenuItems(): iterable
     {
-        
-        return [
-            MenuItem::section('Main'),
-            MenuItem::linktoDashboard('Dashboard', 'fa fa-home'),
-            MenuItem::linkToCrud('Users', 'fa fa-user', User::class),
-            MenuItem::section('Blog'),
-            MenuItem::linkToCrud('Categories', 'fa fa-sitemap', PostCategory::class),
-            MenuItem::linkToCrud('Posts', 'fa fa-file-text', Post::class),
-        ];
+        $menuItems = [];
+        $menuData = $this->menuRepository->findAll();
+        foreach ($menuData as $menu) {
+            if($menu->getType() == 'section'){
+                $menuItems[] = MenuItem::{$menu->getType()}($menu->getName());
+            }else if($menu->getType() == 'linktoDashboard'){
+                $menuItems[] = MenuItem::{$menu->getType()}($menu->getName(), $menu->getIcon())->setPermission($menu->getRole());
+            }else if($menu->getType() == 'linkToCrud'){
+                $entity = $menu->getEntityPath();
+                $entityObject = new $entity();
+                $menuItems[] = MenuItem::{$menu->getType()}($menu->getName(), $menu->getIcon(), get_class($entityObject))->setPermission($menu->getRole());
+            }
+        }
+        return $menuItems;
     }
 }

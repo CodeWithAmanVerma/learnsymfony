@@ -3,6 +3,8 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Post;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Filters;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ChoiceField;
@@ -25,7 +27,7 @@ class PostCrudController extends AbstractCrudController
             IdField::new('id')->hideOnForm(),
             TextField::new('post_title')->setRequired(false),
             TextEditorField::new('post_content')->setRequired(false),
-            AssociationField::new('post_author')->hideOnForm(),
+            AssociationField::new('post_author')->hideOnForm()->setPermission('ROLE_ADMIN'),
             AssociationField::new('post_category'),
             ChoiceField::new('post_type')->setChoices([
                 'Post' => 'post', 
@@ -42,5 +44,17 @@ class PostCrudController extends AbstractCrudController
             ])->setRequired(false),
         ];
     }
+
+    public function configureFilters(Filters $filters): Filters
+    {
+        return $filters
+            ->add('post_content')
+        ;
+    }
+
+    /* public function configureCrud(Crud $crud): Crud
+    {
+        return $crud->setPaginatorPageSize(2);
+    } */
    
 }

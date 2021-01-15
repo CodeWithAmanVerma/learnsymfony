@@ -15,6 +15,7 @@ class HomeController extends AbstractController
      */
     public function index(PostRepository $postRepository): Response
     {
+        // $this->getDoctrine()->getManager()->getConfiguration()->getMetadataDriverImpl()->getAllClassNames();
         $posts = $postRepository->findBy([
             'post_status' => 'active'
         ]);
