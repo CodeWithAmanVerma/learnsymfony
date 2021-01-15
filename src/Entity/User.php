@@ -314,13 +314,6 @@ class User implements UserInterface
         $this->status = 'active';
     }
 
-    /**
-     * @ORM\PrePersist
-     */
-    public function setRoleValue () {
-        $this->roles = ["ROLE_USER"];
-    }
-
     public function __toString(){
         return trim(sprintf('%s %s', $this->first_name, $this->last_name));
     }

@@ -54,6 +54,11 @@ class Post
     private $post_status;
 
     /**
+     * @ORM\Column(type="string", nullable=true)
+     */
+    private $post_thumbnail;
+
+    /**
      * @ORM\Column(type="datetime")
      */
     private $created;
@@ -182,6 +187,18 @@ class Post
     public function setPostCategory(?PostCategory $post_category): self
     {
         $this->post_category = $post_category;
+
+        return $this;
+    }
+
+    public function getPostThumbnail(): ?string
+    {
+        return "/uploads/posts/$this->post_thumbnail";
+    }
+
+    public function setPostThumbnail(?string $post_thumbnail): self
+    {
+        $this->post_thumbnail = $post_thumbnail;
 
         return $this;
     }
