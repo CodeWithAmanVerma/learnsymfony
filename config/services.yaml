@@ -8,6 +8,7 @@ parameters:
         uploads: 
             url_prefix: '/uploads/posts'
             url_path: '/public/uploads/posts'
+    tmp_path: '%kernel.project_dir%/var/tmp'
 services:
     # default configuration for services in *this* file
     _defaults:

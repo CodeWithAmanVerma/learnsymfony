@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\Post;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -14,35 +15,23 @@ class PostType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('post_title', null, [
+            ->add('import_file', FileType::class, [
+                'mapped' => false,
                 'required' => false,
                 'attr' => [
                     'class' => 'form-control' 
                 ],
                 'constraints' => [
-                    new Assert\NotBlank([
-                        'message' => 'Enter a post title or name. e.g Representation of your work',
-                    ]),
-                    new Assert\Length([
-                        'max' => 4096
-                    ]),
+                    new Assert\File([
+                        'maxSize' => '1024k',
+                        'mimeTypes' => [
+                            'application/json'
+                        ],
+                        'mimeTypesMessage' => 'Please upload a valid json document',
+                    ])
                 ],
             ])
-            ->add('post_content',null, [
-                'required' => false,
-                'attr' => [
-                    'class' => 'form-control' 
-                ],
-                'constraints' => [
-                    new Assert\NotBlank([
-                        'message' => 'Enter a description of your post or article.',
-                    ]),
-                    new Assert\Length([
-                        'max' => 4096
-                    ]),
-                ],
-            ])
-            ->add('create', SubmitType::class, [
+            ->add('import', SubmitType::class, [
                 'attr' => [
                     'class' => 'btn btn-primary ' 
                 ]

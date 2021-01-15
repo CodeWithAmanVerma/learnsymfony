@@ -40,11 +40,6 @@
 					<a class="navbar-brand" href="{{ path('home') }}">{{project_name}}</a>
 				</div>
 				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">	
-					<ul class="nav navbar-nav">
-						{% if is_granted('IS_AUTHENTICATED_FULLY') %}
-							<li><a href="{{ path('create_post') }}"><i class="fa fa-plus-circle"></i> Add Post</a></li>
-						{% endif %}
-					</ul>
 					<ul class="nav navbar-nav navbar-right">
 						{% if is_granted('IS_AUTHENTICATED_FULLY') %}
 							<li><a href="{{ path('app_logout') }}">Logout</a></li>

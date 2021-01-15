@@ -29,9 +29,9 @@ class UserCrudController extends AbstractCrudController
     {
         return [
             IdField::new('id')->hideOnForm(),
-            EmailField::new('email')->setRequired(false),
             TextField::new('first_name')->setRequired(false),
             TextField::new('last_name')->setRequired(false),
+            EmailField::new('email')->setRequired(false),
             ChoiceField::new('gender')->setChoices([
                 'Female' => 'female',
                 'Male' => 'male',
