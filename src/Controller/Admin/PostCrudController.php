@@ -24,9 +24,11 @@ class PostCrudController extends AbstractCrudController
     
     public function configureFields(string $pageName): iterable
     {
+        $uploadPath = $this->getParameter('posts');
+        
         return [
             IdField::new('id')->hideOnForm(),
-            ImageField::new('post_thumbnail')->setUploadDir($this->getParameter('post_upload_directory'))->setRequired(false),
+            ImageField::new('post_thumbnail')->setBasePath($uploadPath['uploads']['url_prefix'])->setUploadDir($uploadPath['uploads']['url_path'])->setRequired(false),
             TextField::new('post_title')->setRequired(false),
             TextEditorField::new('post_content')->setRequired(false),
             AssociationField::new('post_author')->hideOnForm()->setPermission('ROLE_ADMIN'),

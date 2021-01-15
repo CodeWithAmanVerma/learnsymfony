@@ -193,7 +193,7 @@ class Post
 
     public function getPostThumbnail(): ?string
     {
-        return "/uploads/posts/$this->post_thumbnail";
+        return $this->post_thumbnail;
     }
 
     public function setPostThumbnail(?string $post_thumbnail): self
