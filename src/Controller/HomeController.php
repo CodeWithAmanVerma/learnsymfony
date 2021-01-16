@@ -19,7 +19,7 @@ class HomeController extends AbstractController
         $posts = $postRepository->findBy([
             'post_status' => 'active'
         ]);
-        return $this->render('home/index.html.twig', [
+        return $this->render('frontend/home/index.html.twig', [
             'posts' => $posts
         ]);
     }
@@ -30,7 +30,7 @@ class HomeController extends AbstractController
     public function show_post($id, Request $request, PostRepository $postRepository): Response
     {
         $post = $postRepository->find($id);
-        return $this->render('home/index.html.twig', [
+        return $this->render('frontend/home/index.html.twig', [
             'post' => $post
         ]);
     }

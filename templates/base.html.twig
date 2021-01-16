@@ -38,16 +38,10 @@
 						<span class="icon-bar"></span>
 					</button>
 					<a class="navbar-brand" href="{{ path('home') }}">{{project_name}}</a>
+					{% block front_nav_left_section %}{% endblock %}
 				</div>
 				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">	
-					<ul class="nav navbar-nav navbar-right">
-						{% if is_granted('IS_AUTHENTICATED_FULLY') %}
-							<li><a href="{{ path('app_logout') }}">Logout</a></li>
-						{% else %}
-							<li><a href="{{ path('app_register') }}">Signup</a></li>
-							<li><a href="{{ path('app_login') }}">Login</a></li>
-						{% endif %}
-					</ul>
+					{% block front_nav_right_section %}{% endblock %}
 				</div>
 			</div>
 		</nav>
@@ -59,6 +53,8 @@
 		</footer>
 	</div>
 	{% block javascripts %}{% endblock %}
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	<script src="https://use.fontawesome.com/63d6908806.js"></script>
 </body>
 </html>
