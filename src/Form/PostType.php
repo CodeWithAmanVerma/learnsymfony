@@ -22,12 +22,8 @@ class PostType extends AbstractType
                     'class' => 'form-control' 
                 ],
                 'constraints' => [
-                    new Assert\File([
-                        'maxSize' => '1024k',
-                        'mimeTypes' => [
-                            'application/json'
-                        ],
-                        'mimeTypesMessage' => 'Please upload a valid json document',
+                    new Assert\NotBlank([
+                        'message' => 'Please upload a json file',
                     ])
                 ],
             ])

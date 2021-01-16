@@ -21,6 +21,7 @@
         "symfony/framework-bundle": "5.2.*",
         "symfony/maker-bundle": "^1.26",
         "symfony/mime": "5.2.*",
+        "symfony/monolog-bundle": "^3.6",
         "symfony/proxy-manager-bridge": "5.2.*",
         "symfony/security-bundle": "5.2.*",
         "symfony/stopwatch": "5.2.*",
