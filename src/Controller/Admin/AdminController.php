@@ -46,6 +46,7 @@ class AdminController extends AbstractDashboardController
                 $menuItems[] = MenuItem::{$menu->getType()}($menu->getName(), $menu->getIcon(), get_class($entityObject))->setPermission($menu->getRole());
             }
         }
+        $menuItems[] = MenuItem::linktoRoute('Settings', 'fa fa-gears', 'app_settings');
         return $menuItems;
     }
 }
