@@ -80,6 +80,13 @@ class Menu
         return $this->id;
     }
 
+    public function setId(Int $id): self
+    {
+        $this->id = $id;
+
+        return $this;
+    }
+
     public function getName(): ?string
     {
         return $this->name;
@@ -231,4 +238,12 @@ class Menu
 
         return $this;
     }
+
+    /**
+     * @ORM\PrePersist
+     */
+    public function setStatusValue () {
+        $this->status = 1;
+    }
+
 }
