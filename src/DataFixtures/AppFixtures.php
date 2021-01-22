@@ -22,7 +22,8 @@ class AppFixtures extends Fixture
         $user->setEmail('admin@gmail.com');
         $user->setFirstName('Adam');
         $user->setLastName('Gill');
-        $user->setRoles(["ROLE_ADMIN"]);
+        $user->setGender('male');
+        $user->setRoles(['ROLE_ADMIN']);
         $user->setPassword($this->passwordEncoder->encodePassword($user,'123456'));
         $user->setMobile('9988799887');
         $user->setDob(new \DateTime('1987-01-15'));
@@ -54,7 +55,7 @@ class AppFixtures extends Fixture
 
             $manager->persist($menu);
         }
-        
+
         $manager->flush();
     }
 }
